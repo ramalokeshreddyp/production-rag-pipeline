@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  rag-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-pipeline-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - VECTOR_STORE_TYPE=chroma
+      - CHROMA_PERSIST_DIR=/app/data/chroma_db
+      - FAISS_INDEX_DIR=/app/data/faiss_index
+      - CHUNKING_STRATEGY=sentence_aware
+      - RETRIEVAL_MODE=hybrid
+      - EMBEDDING_PROVIDER=openai
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - LLM_PROVIDER=openai
+      - LLM_MODEL=gpt-4o-mini
+    volumes:
+      - chroma_data:/app/data/chroma_db
+      - faiss_data:/app/data/faiss_index
+      - ./data/sample_docs:/app/data/sample_docs:ro
+    command: ["python", "cli.py", "serve", "--host", "0.0.0.0", "--port", "8000"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  rag-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-pipeline-ui
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - ENVIRONMENT=production
+      - VECTOR_STORE_TYPE=chroma
+      - CHROMA_PERSIST_DIR=/app/data/chroma_db
+      - FAISS_INDEX_DIR=/app/data/faiss_index
+      - EMBEDDING_PROVIDER=openai
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - LLM_PROVIDER=openai
+      - LLM_MODEL=gpt-4o-mini
+    volumes:
+      - chroma_data:/app/data/chroma_db
+      - faiss_data:/app/data/faiss_index
+      - ./data/sample_docs:/app/data/sample_docs:ro
+    command: ["python", "cli.py", "ui", "--port", "8501"]
+    depends_on:
+      - rag-api
+
+volumes:
+  chroma_data:
+    driver: local
+  faiss_data:
+    driver: local

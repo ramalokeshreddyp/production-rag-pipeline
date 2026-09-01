@@ -1,0 +1,17 @@
+Cloud Architecture & Resiliency Engineering Handbook
+
+1. Multi-Region Deployment Principles
+Enterprise cloud architectures require resilient topologies to achieve 99.999% availability (the five nines). Active-Active multi-region deployment routes traffic dynamically using DNS-based latency routing and Anycast IP networks. When an entire cloud availability zone or region encounters an outage, automated health checks trigger instant traffic failover to healthy secondary regions within 15 seconds.
+
+2. Microservices and Service Mesh
+Modern backend services are decoupled into independently deployable microservices. Communication between microservices is managed by a service mesh (such as Istio or Linkerd) which provides:
+- Mutual TLS (mTLS) for end-to-end zero-trust encryption.
+- Circuit breaking to prevent cascading failures during upstream latency spikes.
+- Distributed tracing with OpenTelemetry headers for sub-millisecond observability.
+- Rate limiting and token-bucket traffic shaping.
+
+3. Database Partitioning and Sharding
+Relational and NoSQL storage tiers scale horizontally through sharding. Consistent hashing algorithms distribute database keys across shard nodes evenly. Read replicas offload read-heavy analytics and search traffic, while write operations are serialized through leader election using consensus protocols such as Raft or Paxos.
+
+4. Container Orchestration & Autoscaling
+Kubernetes clusters utilize the Horizontal Pod Autoscaler (HPA) to scale application replicas based on custom metrics like CPU utilization, memory thresholds, or queue depth. Cluster Autoscaler adjusts the underlying compute nodes dynamically to optimize infrastructure costs during off-peak hours.

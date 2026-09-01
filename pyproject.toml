@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "production-rag-pipeline"
+version = "1.0.0"
+description = "Production-Ready Retrieval-Augmented Generation (RAG) Pipeline Built from Scratch"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "AI Engineering Team"}
+]
+dependencies = [
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.2.0",
+    "python-dotenv>=1.0.1",
+    "rich>=13.7.1",
+    "click>=8.1.7",
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.30.0",
+    "streamlit>=1.35.0",
+    "requests>=2.32.0",
+    "python-multipart>=0.0.9",
+    "pypdf>=4.2.0",
+    "beautifulsoup4>=4.12.3",
+    "python-docx>=1.1.2",
+    "markdown>=3.6",
+    "chromadb>=0.5.0",
+    "faiss-cpu>=1.8.0",
+    "numpy>=1.26.0",
+    "scikit-learn>=1.4.0",
+    "openai>=1.30.0",
+    "tiktoken>=0.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.7",
+    "httpx>=0.27.0",
+    "pytest-cov>=5.0.0",
+    "black>=24.4.2",
+    "isort>=5.13.2",
+    "flake8>=7.0.0"
+]
+local-models = [
+    "sentence-transformers>=3.0.0",
+    "torch>=2.2.0"
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --cov=src --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
+python_files = ["test_*.py"]
+pythonpath = ["."]
+asyncio_mode = "auto"

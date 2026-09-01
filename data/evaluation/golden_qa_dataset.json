@@ -1,0 +1,98 @@
+[
+  {
+    "id": "qa_001",
+    "question": "What are the two major limitations of Large Language Models described in the AI overview?",
+    "ground_truth_answer": "Knowledge Cutoff (static information up to pre-training) and Hallucinations (generating factually incorrect yet grammatically fluent assertions).",
+    "source_document": "artificial_intelligence_overview.md",
+    "keywords": ["Knowledge Cutoff", "Hallucinations", "weights", "pre-training"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_002",
+    "question": "What is the typical chunk size and overlap recommended for RAG ingestion?",
+    "ground_truth_answer": "Typically 300 to 500 tokens with 15-20% overlap to preserve contextual continuity.",
+    "source_document": "artificial_intelligence_overview.md",
+    "keywords": ["300 to 500 tokens", "15-20% overlap", "contextual continuity"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_003",
+    "question": "How does Reciprocal Rank Fusion (RRF) combine dense and sparse search rankings?",
+    "ground_truth_answer": "RRF sums the weighted reciprocal ranks: RRF(d) = sum(w_m / (k + rank_m(d))) where k is a smoothing constant commonly set to 60.",
+    "source_document": "artificial_intelligence_overview.md",
+    "keywords": ["RRF", "reciprocal rank", "smoothing constant", "k=60", "dense", "bm25"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_004",
+    "question": "What are the four key capabilities provided by a service mesh in microservices architecture?",
+    "ground_truth_answer": "Mutual TLS (mTLS) for zero-trust encryption, circuit breaking, distributed tracing with OpenTelemetry, and rate limiting/traffic shaping.",
+    "source_document": "cloud_architecture_handbook.txt",
+    "keywords": ["Mutual TLS", "mTLS", "circuit breaking", "OpenTelemetry", "rate limiting"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_005",
+    "question": "How fast does automated failover occur during a multi-region cloud outage?",
+    "ground_truth_answer": "Automated health checks trigger instant traffic failover to healthy secondary regions within 15 seconds.",
+    "source_document": "cloud_architecture_handbook.txt",
+    "keywords": ["15 seconds", "failover", "health checks", "Active-Active"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_006",
+    "question": "What is the mandatory MFA requirement and session TTL specified in the security policy?",
+    "ground_truth_answer": "Mandatory hardware-based FIDO2 WebAuthn keys and a maximum session time-to-live (TTL) of 4 hours under Just-In-Time access.",
+    "source_document": "security_and_compliance_policy.md",
+    "keywords": ["FIDO2", "WebAuthn", "4 hours", "Just-In-Time", "MFA"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_007",
+    "question": "What cryptographic standards are required for data in transit and data at rest?",
+    "ground_truth_answer": "Data in transit enforces TLS 1.3 with AES-256-GCM cipher suites. Data at rest encrypts persistent storage using AES-256 with CMEK rotated every 90 days.",
+    "source_document": "security_and_compliance_policy.md",
+    "keywords": ["TLS 1.3", "AES-256-GCM", "AES-256", "CMEK", "90 days"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_008",
+    "question": "What is the notification timeframe for a Severity 1 Critical Incident under GDPR Article 33?",
+    "ground_truth_answer": "Initial response within 15 minutes, and notification to the DPO and affected regulatory bodies within 72 hours.",
+    "source_document": "security_and_compliance_policy.md",
+    "keywords": ["15 minutes", "72 hours", "DPO", "GDPR Article 33"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_009",
+    "question": "Describe the three tiers of the Medallion Lakehouse Architecture.",
+    "ground_truth_answer": "Bronze Layer (raw append-only Parquet/Avro data), Silver Layer (cleaned, deduplicated, schema-validated data), and Gold Layer (aggregated dimensional star schema models).",
+    "source_document": "data_engineering_best_practices.txt",
+    "keywords": ["Bronze Layer", "Silver Layer", "Gold Layer", "Parquet", "Star Schema"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_010",
+    "question": "What batch sizes and hashing methods are recommended for vector database ingestion?",
+    "ground_truth_answer": "Calculate MD5/SHA-256 hashes to skip redundant computations and batch embedding requests into chunks of 64 to 256 items.",
+    "source_document": "data_engineering_best_practices.txt",
+    "keywords": ["MD5", "SHA-256", "64 to 256 items", "batch embedding"],
+    "is_in_domain": true
+  },
+  {
+    "id": "qa_011",
+    "question": "What is the recipe for baking chocolate chip cookies on Mars?",
+    "ground_truth_answer": "I don't know.",
+    "source_document": "none",
+    "keywords": ["I don't know."],
+    "is_in_domain": false
+  },
+  {
+    "id": "qa_012",
+    "question": "Who won the FIFA World Cup in the year 3042?",
+    "ground_truth_answer": "I don't know.",
+    "source_document": "none",
+    "keywords": ["I don't know."],
+    "is_in_domain": false
+  }
+]

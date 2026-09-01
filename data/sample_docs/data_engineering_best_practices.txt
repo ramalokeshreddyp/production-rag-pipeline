@@ -1,0 +1,16 @@
+Data Engineering & Pipeline Reliability Best Practices
+
+1. Medallion Lakehouse Architecture
+Data lakehouse architectures organize raw and refined analytical assets into three tiers:
+- Bronze Layer: Raw data ingested from transactional databases, message queues (Kafka, Kinesis), and webhooks in append-only Parquet or Avro format.
+- Silver Layer: Cleaned, deduplicated, and schema-validated records enriched with surrogate keys and audit timestamps.
+- Gold Layer: Aggregated, business-level dimensional models (Star Schema) optimized for real-time dashboards and machine learning feature stores.
+
+2. Exactly-Once Processing Semantics
+Stream processing pipelines using Apache Flink or Spark Structured Streaming guarantee exactly-once semantics via distributed checkpointing and two-phase commit (2PC) sinks. Idempotent consumer designs prevent duplicate writes when network retries occur.
+
+3. Vector Database Ingestion Pipelines
+When preparing large document corpora for RAG vector databases:
+- Ingestion jobs should calculate MD5/SHA-256 hashes of document content to skip redundant embedding computations.
+- Batch embedding requests into chunks of 64 to 256 items to optimize network throughput and avoid rate limits.
+- Periodically compact vector indexes and rebuild HNSW graph layers to prevent index fragmentation.
