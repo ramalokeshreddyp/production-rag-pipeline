@@ -24,10 +24,8 @@ faiss-cpu>=1.8.0
 numpy>=1.26.0
 scikit-learn>=1.4.0
 
-# Embedding & LLM (OpenAI & HF)
+# Embedding & LLM (OpenAI & API)
 openai>=1.30.0
-sentence-transformers>=3.0.0
-torch>=2.2.0
 tiktoken>=0.7.0
 
 # Testing & Quality

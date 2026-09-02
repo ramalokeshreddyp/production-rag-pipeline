@@ -6,7 +6,7 @@ services:
     container_name: rag-pipeline-api
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "${APP_PORT:-8001}:8000"
     environment:
       - ENVIRONMENT=production
       - LOG_LEVEL=INFO
